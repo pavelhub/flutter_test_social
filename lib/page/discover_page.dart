@@ -28,10 +28,11 @@ class _DiscoverPageState extends State<DiscoverPage>
     super.initState();
     animationController =
         AnimationController(duration: Duration(milliseconds: 700), vsync: this);
-    //animationControllerCircle =
-    //  AnimationController(duration: Duration(milliseconds: 700), vsync: this);
-    //animation = Tween(begin: -0.0, end: 0.0).animate(
-    //   CurvedAnimation(parent: animationController, curve: Curves.easeIn));
+   }
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -55,8 +56,18 @@ class _DiscoverPageState extends State<DiscoverPage>
     });
 
     return new Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Colors.white,
+        leading: Image.asset("assets/images/back.png"),
+        title: Image.asset("assets/images/icon_discover_title.png"),
+        actions: <Widget>[
+          new IconButton(
+            icon: Image.asset("assets/images/icon_discover_menu.png"),
+            onPressed: () {},
+          ),
+        ],
+        centerTitle: true,
       ),
       body: new Stack(
         alignment: Alignment.center,
@@ -130,6 +141,12 @@ class _CirculeAnimationWidgetState extends State<CircleAnimationWidget>
           .repeat() // start paper animation over
           .orCancel;
     } on TickerCanceled {}
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
